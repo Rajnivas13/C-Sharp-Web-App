@@ -21,5 +21,21 @@ namespace learningsharp.Controllers
             IEnumerable<Category> objlist= _db.Category;
             return View(objlist);
         }
+
+        //GET - CREATE
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //GET - POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj)
+        {
+            _db.Category.Add(obj);
+            _db.SaveChanges();
+            return Redirect("Index");
+        }
     }
 }
